@@ -1,0 +1,30 @@
+{
+  "name": "jellyfish",
+  "version": "1.0.0",
+  "description": "simple game",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js --mode development",
+    "start": "npm run build && webpack-dev-server"
+  },
+  "dependencies": {
+    "react-dom": "^17.0.2",
+    "webpack": "^5.65.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.3",
+    "copy-webpack-plugin": "^10.2.0",
+    "file-loader": "^6.2.0",
+    "prettier": "2.5.1",
+    "react": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  }
+}
