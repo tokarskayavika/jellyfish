@@ -4,14 +4,14 @@ const defaultState = {
     paused: false,
 };
 
-export default function gameReducer(state = defaultState, action) {
-    switch (action.type) {
-        // case 'PAUSE': {
-        //     return {
-        //         ...state,
-        //         paused: true,
-        //     }
-        // }
+export default function gameReducer(state = defaultState, { type, payload }) {
+    switch (type) {
+        case 'PAUSE_GAME': {
+            return {
+                ...state,
+                paused: !state.paused,
+            }
+        }
 
         default:
             return state;

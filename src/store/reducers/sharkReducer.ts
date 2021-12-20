@@ -1,14 +1,28 @@
+import { height, width } from "../../constants";
+
+const speed = 7;
+
 const defaultState = {
     position: {
-        x: 0, y: 0
+        x: -400, y: Math.random() * (height - 200)
     },
-    speed: 7,
 };
 
 export default function sharkReducer(state = defaultState, action) {
     switch (action.type) {
-        case '': {
-            
+        case 'CHANGE_SHARK_POSITION': {
+            return {
+                ...state,
+                position: {
+                    ...state.position,
+                    x: state.position.x + speed > width ? 
+                        defaultState.position.x : 
+                        state.position.x + speed,
+                    y: state.position.x + speed > width ? 
+                        Math.random() * (height - 200) : 
+                        state.position.y
+                }
+            }
         }
 
         default:
