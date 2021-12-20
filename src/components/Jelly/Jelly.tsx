@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import { Context } from "../../context";
 
@@ -11,13 +11,23 @@ const Jelly = () => {
   const position = useSelector(jellyPosition);
   const sprite = useSelector(jellySprite);
 
-  const { ctx } = useContext(Context);
-  const { x, y } = position;
+  const { ctx, renderFns } = useContext(Context);
 
   useLayoutEffect(() => {
-    console.log("x", sprite);
-    ctx?.drawImage(jelly, sprite.x, sprite.y, 70, 70, x, y, 60, 60);
-  }, [ctx, x, y]);
+    requestAnimationFrame(() =>
+      ctx?.drawImage(
+        jelly,
+        sprite.x,
+        sprite.y,
+        70,
+        70,
+        position.x,
+        position.y,
+        60,
+        60
+      )
+    );
+  }, [ctx, position, sprite]);
 
   return <></>;
 };

@@ -14,7 +14,6 @@ const step = 30;
 export default function jellyReducer(state = defaultState, { type, payload }) {
     switch (type) {
         case 'CHANGE_JELLY_POSITION': {
-            console.log('ssss');
             const { x, y } = state.position;
             if (payload === "ArrowDown") {
                 return {

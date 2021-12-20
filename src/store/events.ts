@@ -13,3 +13,7 @@ export const actionCreator = (code) => {
 export const changeSharkPosition = () => ({
     type: "CHANGE_SHARK_POSITION"
 })
+
+export const animateBubbles = () => ({
+    type: "ANIMATE_BUBBLES"
+})

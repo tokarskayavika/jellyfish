@@ -1,6 +1,6 @@
 import { height, width } from "../../constants";
 
-const speed = 7;
+const speed = 6;
 
 const defaultState = {
     position: {
@@ -15,7 +15,7 @@ export default function sharkReducer(state = defaultState, action) {
                 ...state,
                 position: {
                     ...state.position,
-                    x: state.position.x + speed > width ? 
+                    x: state.position.x + speed > 2 * width ? 
                         defaultState.position.x : 
                         state.position.x + speed,
                     y: state.position.x + speed > width ? 

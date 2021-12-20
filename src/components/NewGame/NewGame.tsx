@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { height, width } from "../../constants";
 import { Shark, Jelly, Bubbles } from "../../components";
 import { Context } from "../../context";
-import { actionCreator, changeSharkPosition } from "../../store/events";
+import {
+  actionCreator,
+  changeSharkPosition,
+  animateBubbles,
+} from "../../store/events";
 import { paused } from "../../store/selectors";
 
 const underwater = new Image();
@@ -22,7 +26,11 @@ const NewGame = () => {
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
       ctx.drawImage(underwater, 0, 0);
+
       dispatch(changeSharkPosition());
+      //   dispatch(animateJelly());
+      dispatch(animateBubbles());
+
       animation = requestAnimationFrame(animate);
     };
 
@@ -34,11 +42,12 @@ const NewGame = () => {
     }
 
     ctx = ref.current.getContext("2d");
+    ref.current.focus();
     SetCxt(ctx);
   }, [ctx]);
 
   return (
-    <Context.Provider value={{ ctx, animation }}>
+    <Context.Provider value={{ ctx }}>
       <canvas
         width={width}
         height={height}
@@ -46,9 +55,9 @@ const NewGame = () => {
         onKeyDown={({ code }) => dispatch(actionCreator(code))}
         tabIndex={0}
       />
-      <Jelly />
       <Shark />
       <Bubbles />
+      <Jelly />
       <span>Score: {0}</span>
       {pause && <p>PAUSED</p>}
     </Context.Provider>
