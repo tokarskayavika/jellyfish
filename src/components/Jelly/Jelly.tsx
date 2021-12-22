@@ -14,20 +14,18 @@ const Jelly = () => {
   const { ctx, renderFns } = useContext(Context);
 
   useLayoutEffect(() => {
-    requestAnimationFrame(() =>
-      ctx?.drawImage(
-        jelly,
-        sprite.x,
-        sprite.y,
-        70,
-        70,
-        position.x,
-        position.y,
-        60,
-        60
-      )
+    ctx?.drawImage(
+      jelly,
+      sprite.x,
+      sprite.y,
+      70,
+      70,
+      position.x,
+      position.y,
+      60,
+      60
     );
-  }, [ctx, position, sprite]);
+  });
 
   return <></>;
 };

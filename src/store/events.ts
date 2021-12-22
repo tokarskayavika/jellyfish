@@ -17,3 +17,8 @@ export const changeSharkPosition = () => ({
 export const animateBubbles = () => ({
     type: "ANIMATE_BUBBLES"
 })
+
+export const ressurectJelly = (sharkY) => ({
+    type: "RESSURECT_JELLY",
+    payload: sharkY,
+})

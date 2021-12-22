@@ -15,9 +15,8 @@ export default function gameReducer(state = defaultState, { type, payload }) {
 
             let list = state.list
                 .map(({ x, y }) => ({ x: x, y: y - speed}))
-                .filter(({ y }) => !!y);
-
-
+                .filter(({ y }) => y > -35);
+                
             if (time > lastAdd + addTime) {
                 list.push({
                     x: Math.random() * (width - 50) + 15,

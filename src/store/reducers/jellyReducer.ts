@@ -9,7 +9,7 @@ const defaultState = {
     }
 };
 
-const step = 30;
+const step = 50;
 
 export default function jellyReducer(state = defaultState, { type, payload }) {
     switch (type) {
@@ -58,6 +58,18 @@ export default function jellyReducer(state = defaultState, { type, payload }) {
                     sprite: {
                         x: 20, y: 200,
                     }
+                }
+            }
+        }
+
+        case "RESSURECT_JELLY" : {
+            const jellyY = payload > 300 ? 0 : height - 80;
+
+            return {
+                ...state,
+                sprite: defaultState.sprite,
+                position: {
+                    x: width / 2, y: jellyY,
                 }
             }
         }
