@@ -12,8 +12,6 @@ const Lives = () => {
   const rafId = useSelector(rafID);
   const lives = useSelector(remainingLives);
 
-  console.log(lives);
-
   useLayoutEffect(() => {
     if (lives >= 7) {
       ctx?.drawImage(

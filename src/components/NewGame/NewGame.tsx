@@ -17,6 +17,7 @@ underwater.src = "/assets/underwater.png";
 
 const mainTheme = new Audio("assets/track1.wav");
 mainTheme.volume = 0.1;
+mainTheme.load();
 
 const NewGame = () => {
   let animation;
@@ -43,8 +44,7 @@ const NewGame = () => {
     if (ctx === null) {
       underwater.onload = function () {
         ctx.drawImage(underwater, 0, 0);
-        mainTheme.load();
-        // mainTheme.play();
+        mainTheme.play();
       };
       requestAnimationFrame(animate);
     }
@@ -72,6 +72,28 @@ const NewGame = () => {
       <span>Score: {score}</span>
       {pause && <p>PAUSED</p>}
       {over && <GameOver />}
+
+      <style jsx>
+        {`
+          canvas {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translate(-50%, 0);
+          }
+
+          span {
+            position: absolute;
+            color: #ffffff;
+            font-family: "Montserrat", sans-serif;
+            top: 42px;
+            right: 250px;
+          }
+
+          p {
+          }
+        `}
+      </style>
     </Context.Provider>
   );
 };

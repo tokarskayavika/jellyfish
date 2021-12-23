@@ -1,5 +1,5 @@
 const defaultState = {
-    lives: 2,
+    lives: 9,
     score: 0,
     paused: false,
     rafId: null,
