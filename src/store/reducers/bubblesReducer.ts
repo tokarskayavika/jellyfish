@@ -29,6 +29,16 @@ export default function gameReducer(state = defaultState, { type, payload }) {
             return { ...state, list }
         }
 
+        case 'BURST_BUBBLE': {
+            const bubbles = state.list;
+            bubbles.splice(payload, 1);
+
+            return {
+                ...state,
+                list: bubbles,
+            }
+        }
+
         default:
             return state;
     }

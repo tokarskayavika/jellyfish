@@ -1,9 +1,25 @@
 import { Middleware } from "redux";
-import { changeRafID, removeLife, ressurectJelly } from "./events";
-import { sharkBitesJelly, jellyTouchesBubble, sharkPosition, remainingLives, rafID } from "./selectors";
+import {
+    burstBubble,
+    changeRafID,
+    removeLife,
+    ressurectJelly
+} from "./events";
+import {
+    sharkBitesJelly,
+    jellyTouchesBubble,
+    sharkPosition,
+    remainingLives,
+    rafID
+} from "./selectors";
 
 const biteSound = new Audio("assets/bite.wav");
 biteSound.volume = .20;
+biteSound.load();
+
+var bubbleSound = new Audio("assets/bubble.wav");
+bubbleSound.volume = .20;
+bubbleSound.load();
 
 export const middleware = (store) => (next) => (action) => {
     const lives = remainingLives(store.getState());
@@ -15,11 +31,16 @@ export const middleware = (store) => (next) => (action) => {
         const bubbleBurst = jellyTouchesBubble(store.getState());
 
         if (jellyIsDead) {
-            biteSound.load();
-            // biteSound.play();
+            biteSound.play();
 
             store.dispatch(ressurectJelly(shark.y));
             store.dispatch(removeLife());
+        }
+
+        if (bubbleBurst) {
+            bubbleSound.play();
+
+            store.dispatch(burstBubble(bubbleBurst.index));
         }
     }
 

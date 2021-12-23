@@ -35,3 +35,8 @@ export const removeLife = () => ({
 export const restartGame = () => ({
     type: "RESTART_GAME",
 })
+
+export const burstBubble = (index) => ({
+    type: "BURST_BUBBLE",
+    payload: index,
+})

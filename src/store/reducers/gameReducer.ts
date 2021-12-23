@@ -8,6 +8,13 @@ const defaultState = {
 
 export default function gameReducer(state = defaultState, { type, payload }) {
     switch (type) {
+        case 'BURST_BUBBLE': {
+            return {
+                ...state,
+                score: state.score + 1,
+            }
+        }
+
         case 'PAUSE_GAME': {
             return {
                 ...state,

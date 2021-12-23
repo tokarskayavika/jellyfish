@@ -7,6 +7,7 @@ export const paused = (state) => state.game.paused;
 export const rafID = (state) => state.game.rafId;
 export const remainingLives = (state) => state.game.lives;
 export const gameOver = (state) => state.game.over;
+export const gameScore = (state) => state.game.score;
 
 export const bubbleList = (state) => state.bubbles.list;
 
@@ -32,14 +33,13 @@ export const jellyTouchesBubble = (state) => {
 	const jellyPosition = state.jelly.position;
 	const bubbles = state.bubbles.list;
 
-	// for (var i = 0; i < bubbles.length; i++) {
-	// 	var object = bubbles[i];
-    //     if(xPos < object.x + 35 && xPos > object.x - 35 && 
-    //     	yPos < object.y + 35 && yPos > object.y - 35) {
-    //     	bubbleSound.play();
-    //  		bubbles.splice(i, 1);
-    //  		score += 1;
-    //  		span.innerHTML = `Score: ${score}`;
-    //     }
-    // }
+	for (let i = 0; i < bubbles.length; i++) {
+		let object = bubbles[i];
+        if (jellyPosition.x < object.x + 35 && jellyPosition.x > object.x - 35 && 
+        	jellyPosition.y < object.y + 35 && jellyPosition.y > object.y - 35) {
+                return { index: i };
+        }
+    }
+
+    return false;
 };

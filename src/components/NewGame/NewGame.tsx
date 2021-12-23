@@ -10,7 +10,7 @@ import {
   animateBubbles,
   changeRafID,
 } from "../../store/events";
-import { gameOver, paused } from "../../store/selectors";
+import { gameOver, gameScore, paused } from "../../store/selectors";
 
 const underwater = new Image();
 underwater.src = "/assets/underwater.png";
@@ -26,6 +26,7 @@ const NewGame = () => {
   const dispatch = useDispatch();
   const pause = useSelector(paused);
   const over = useSelector(gameOver);
+  const score = useSelector(gameScore);
 
   useLayoutEffect(() => {
     const animate = () => {
@@ -68,7 +69,7 @@ const NewGame = () => {
       <Jelly />
       <Bubbles />
       <Lives />
-      <span>Score: {0}</span>
+      <span>Score: {score}</span>
       {pause && <p>PAUSED</p>}
       {over && <GameOver />}
     </Context.Provider>
