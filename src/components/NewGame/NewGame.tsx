@@ -2,14 +2,15 @@ import React, { useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { height, width } from "../../constants";
-import { Shark, Jelly, Bubbles, Lives } from "../../components";
+import { Shark, Jelly, Bubbles, Lives, GameOver } from "../../components";
 import { Context } from "../../context";
 import {
   actionCreator,
   changeSharkPosition,
   animateBubbles,
+  changeRafID,
 } from "../../store/events";
-import { paused } from "../../store/selectors";
+import { gameOver, paused } from "../../store/selectors";
 
 const underwater = new Image();
 underwater.src = "/assets/underwater.png";
@@ -19,12 +20,12 @@ mainTheme.volume = 0.1;
 
 const NewGame = () => {
   let animation;
-  const ref = React.createRef(); //<HTMLCanvasElement>
-
-  const dispatch = useDispatch();
   let [ctx, setCxt] = useState(null);
-  let [rafId, setRafId] = useState(null);
+
+  const ref = React.createRef(); //<HTMLCanvasElement>
+  const dispatch = useDispatch();
   const pause = useSelector(paused);
+  const over = useSelector(gameOver);
 
   useLayoutEffect(() => {
     const animate = () => {
@@ -35,18 +36,14 @@ const NewGame = () => {
       dispatch(animateBubbles());
 
       animation = requestAnimationFrame(animate);
-      setRafId(animation);
+      dispatch(changeRafID(animation));
     };
-
-    const life = new Image();
-    life.src = "/assets/hearts.png";
 
     if (ctx === null) {
       underwater.onload = function () {
         ctx.drawImage(underwater, 0, 0);
-        ctx?.drawImage(life, 0, 0, 100, 100, 650, 20, 25, 25);
         mainTheme.load();
-        mainTheme.play();
+        // mainTheme.play();
       };
       requestAnimationFrame(animate);
     }
@@ -73,6 +70,7 @@ const NewGame = () => {
       <Lives />
       <span>Score: {0}</span>
       {pause && <p>PAUSED</p>}
+      {over && <GameOver />}
     </Context.Provider>
   );
 };
